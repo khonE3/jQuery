@@ -734,14 +734,13 @@ body {
   box-shadow: var(--shadow-card);
   z-index: 9999;
   display: none;
-  animation: slideUpToast 0.3s ease;
-  display: flex;
   align-items: center;
   gap: 8px;
 }
 
 .ajax-toast.show {
   display: flex;
+  animation: slideUpToast 0.3s ease;
 }
 
 .ajax-toast.success {
@@ -750,6 +749,23 @@ body {
 
 .ajax-toast.error {
   border-color: rgba(248, 113, 113, 0.3);
+}
+
+.toast-close {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 1.4rem;
+  line-height: 1;
+  padding: 4px 8px;
+  cursor: pointer;
+  margin-left: 8px;
+  transition: var(--transition);
+}
+
+.toast-close:hover {
+  color: var(--text-primary);
+  transform: scale(1.1);
 }
 
 @keyframes slideUpToast {

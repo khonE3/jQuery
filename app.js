@@ -462,15 +462,22 @@ $(document).ready(function () {
   // ===== Toast Notification =====
   function showToast(message, type) {
     const toast = $("#ajax-toast");
-    toast.removeClass("success error show").html(message);
+    const html = `<span>${message}</span><button type="button" class="toast-close" aria-label="Close">&times;</button>`;
+    
+    toast.removeClass("success error show").html(html);
     toast.addClass(type + " show");
+
+    toast.off("click", ".toast-close").on("click", ".toast-close", function() {
+      toast.removeClass("show");
+      clearTimeout(toast.data("timer"));
+    });
 
     clearTimeout(toast.data("timer"));
     toast.data(
       "timer",
       setTimeout(function () {
         toast.removeClass("show");
-      }, 3000)
+      }, 4000)
     );
   }
 
