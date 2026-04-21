@@ -1,5 +1,7 @@
 # ⚡ jQuery & AJAX Summary
 
+https://khone3.github.io/jQuery/
+
 เว็บไซต์สรุปเนื้อหา **jQuery** และ **AJAX** แบบครบถ้วน พร้อมตัวอย่างโค้ดจริง — สร้างขึ้นด้วย jQuery + AJAX จริง ๆ ทุกข้อมูลถูกโหลดจาก JSON files ผ่าน AJAX
 
 ## 🌟 Features
@@ -47,8 +49,124 @@ jQuery/
 4. **Live Demo** — แสดง jQuery effects จริง ๆ (toggle, animate, css, append)
 5. **Toast Notification** — แจ้งสถานะ AJAX request ทุกครั้ง
 
+## 📚 สรุปคำสั่งพื้นฐานและการจัดการ DOM ของ jQuery (Core Commands)
 
-## 🌐 สรุปคำสั่ง jQuery AJAX พร้อมตัวอย่าง
+นอกจาก AJAX แล้ว jQuery ยังเป็นเครื่องมือที่ทรงพลังในการจัดการโครงสร้างหน้าเว็บ (DOM) โดยมีกลุ่มคำสั่งหลักที่ใช้บ่อยดังนี้:
+
+### 1. Selectors (การเลือก Element)
+ทำงานคล้ายกับ CSS Selectors แต่มีประสิทธิภาพมากกว่า
+```javascript
+$('#myId')       // เลือกผ่าย ID
+$('.myClass')    // เลือกผ่าน Class
+$('div')         // เลือกผ่านชื่อ HTML Tag
+$('input:text')  // เลือก Input ประเภท Text
+$('ul li:first') // เลือก li ตัวแรกที่อยู่ใน ul
+```
+
+### 2. DOM Manipulation (การจัดการเนื้อหา/แท็ก HTML)
+คำสั่งสำหรับดึงค่า หรือแก้ไขเนื้อหาบนเว็บ
+```javascript
+// ดึงหรือเปลี่ยนข้อความ (ไม่สน HTML tag)
+let text = $('#box').text(); 
+$('#box').text('ข้อความใหม่');
+
+// ดึงหรือเปลี่ยนโครงสร้าง HTML
+$('#box').html('<strong>ตัวหนา</strong>');
+
+// ดึงหรือเปลี่ยนค่าของ Input (Form)
+let val = $('#username').val();
+$('#username').val('john_doe');
+
+// การเพิ่มหรือลบ Element
+$('#list').append('<li>ต่อท้าย</li>');    // ใส่ไว้ท้ายสุด (ในกล่อง)
+$('#list').prepend('<li>บนสุด</li>');     // ใส่ไว้บนสุด (ในกล่อง)
+$('#box').remove();                      // ลบกล่องนี้ทิ้งไปเลย
+$('#box').empty();                       // ลบ "ไส้ใน" ของกล่องนี้ทิ้ง แต่เก็บกล่องไว้
+```
+
+### 3. CSS & Classes (การจัดการสไตล์)
+ใช้สำหรับจัดรูปแบบดีไซน์แบบ Dynamic
+```javascript
+// เปลี่ยน CSS โดยตรง (ใช้ CamelCase หรือใส่เครื่องหมายขีดคั่น)
+$('#box').css('color', 'red');
+$('#box').css({
+  'background-color': 'blue',
+  'font-size': '20px'
+});
+
+// จัดการผ่าน Class (แนะนำวิธีนี้)
+$('#box').addClass('active');      // เพิ่ม Class
+$('#box').removeClass('active');   // ลบ Class
+$('#box').toggleClass('active');   // สลับ Class (มีอยู่แล้วลบ, ไม่มีจะเพิ่ม)
+```
+
+### 4. Events (การจัดการการกระทำของผู้ใช้)
+ดักจับว่าผู้ใช้ทำอะไรกับหน้าเว็บ
+```javascript
+// รอจนกว่าหน้าเว็บจะโหลดเสร็จสมบูรณ์ (สำคัญ!)
+$(document).ready(function() { ... });
+
+// Shorthand ของ .ready() โค้ดสั้นกว่า
+$(function() { ... });
+
+// เมื่อถูกคลิก
+$('#btn').click(function() {
+  alert('ปุ่มถูกคลิก!');
+});
+
+// ฟังชั่น .on() (ดีที่สุดสำหรับ Event) ดักจับได้หลาย Event พร้อมกัน
+$('#box').on('mouseenter mouseleave', function() {
+  $(this).toggleClass('hovered');
+});
+
+// ใช้กับ Element ที่ถูกสร้างขึ้นมาใหม่ (Dynamic Element) ต้องใช้ .on() แปะที่ body
+$('body').on('click', '.dynamic-btn', function() { ... });
+```
+
+### 5. Effects & Animations (ลูกเล่นและแอนิเมชัน)
+สร้าง Motion ให้เว็บดูมีชีวิตชีวา
+```javascript
+// โชว์/ซ่อน แแบบปกติ
+$('#box').hide();
+$('#box').show();
+$('#box').toggle();
+
+// เฟดเข้า/ออก (ค่อยๆ สว่าง/ค่อยๆ จางหาย)
+$('#box').fadeIn(500);    // 500ms
+$('#box').fadeOut();
+$('#box').fadeToggle();
+
+// เลื่อนขึ้น/ลง (เหมือนม่าน)
+$('#panel').slideDown();
+$('#panel').slideUp();
+$('#panel').slideToggle();
+
+// สร้าง Animation ของตัวเอง (ทำงานกับค่าที่เป้นตัวเลขเท่านั้น)
+$('#box').animate({
+  opacity: 0.5,
+  left: '200px',
+  height: 'toggle'
+}, "slow");
+```
+
+### 6. Traversing (การค้นหาเครือญาติใน DOM tree)
+เดินหา Element รอบๆ ตัวที่สนใจ
+```javascript
+// หาพ่อแม่
+$('#child').parent();          // ขึ้นไป 1 ระดับ
+$('#child').closest('.box');   // ขึ้นไปเรื่อยๆ จนกว่าจะเจอ Class .box
+
+// หาบรรดาลูกๆ
+$('#parent').children();       // ลูกสายตรงทุกตัว
+$('#parent').find('.target');  // มุดลงไปหาเรื่อยๆ จนกว่าจะเจอ .target
+
+// หาพี่น้องระดับเดียวกัน
+$('#item').siblings();         // พี่น้องทั้งหมด (ไม่รวมตัวเอง)
+$('#item').next();             // ตัวถัดไป 1 ตัว
+$('#item').prev();             // ตัวก่อนหน้า 1 ตัว
+```
+
+---
 
 การใช้ AJAX ใน jQuery ช่วยลดความซับซ้อนของการตั้งค่า `XMLHttpRequest` หรือการเรียกใช้ API ปกติ ให้คุณเขียนโค้ดได้กระชับขึ้นด้วย methods ต่างๆ ดังนี้:
 
