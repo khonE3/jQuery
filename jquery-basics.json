@@ -1,0 +1,49 @@
+{
+  "title": "jQuery Basics",
+  "icon": "⚡",
+  "description": "พื้นฐาน jQuery ที่จำเป็นต้องรู้",
+  "sections": [
+    {
+      "id": "what-is-jquery",
+      "title": "jQuery คืออะไร?",
+      "content": "jQuery เป็น JavaScript Library ที่ได้รับความนิยมมากที่สุด ช่วยให้การเขียน JavaScript ง่ายขึ้น ด้วยคำขวัญ <strong>\"Write Less, Do More\"</strong> jQuery ช่วยลดโค้ดที่ซับซ้อนให้เหลือเพียงไม่กี่บรรทัด",
+      "code": "// Vanilla JavaScript\ndocument.getElementById('myElement').style.display = 'none';\n\n// jQuery - สั้นกว่ามาก!\n$('#myElement').hide();",
+      "language": "javascript"
+    },
+    {
+      "id": "selectors",
+      "title": "Selectors (ตัวเลือก)",
+      "content": "jQuery Selectors ใช้สำหรับเลือก HTML elements โดยใช้ CSS Selector syntax ที่คุ้นเคย",
+      "code": "// เลือกด้วย ID\n$('#myId')\n\n// เลือกด้วย Class\n$('.myClass')\n\n// เลือกด้วย Element\n$('p')\n\n// เลือกด้วย Attribute\n$('input[type=\"text\"]')\n\n// เลือกแบบซ้อน\n$('div.container > p.highlight:first-child')",
+      "language": "javascript"
+    },
+    {
+      "id": "dom-manipulation",
+      "title": "DOM Manipulation",
+      "content": "jQuery ทำให้การจัดการ DOM เป็นเรื่องง่าย ไม่ว่าจะเป็นการเพิ่ม ลบ หรือแก้ไข HTML elements",
+      "code": "// เปลี่ยนข้อความ\n$('#title').text('Hello jQuery!');\n\n// เปลี่ยน HTML\n$('#content').html('<strong>Bold Text</strong>');\n\n// เพิ่ม Element\n$('#list').append('<li>Item ใหม่</li>');\n$('#list').prepend('<li>Item แรก</li>');\n\n// ลบ Element\n$('.old-item').remove();\n\n// Clone Element\n$('.template').clone().appendTo('#container');",
+      "language": "javascript"
+    },
+    {
+      "id": "css-styling",
+      "title": "CSS & Styling",
+      "content": "jQuery จัดการ CSS ได้อย่างง่ายดาย ทั้งการเพิ่ม/ลบ class และการเปลี่ยน style โดยตรง",
+      "code": "// เปลี่ยน CSS property\n$('#box').css('background-color', '#6c5ce7');\n\n// เปลี่ยนหลาย properties\n$('#box').css({\n  'color': '#fff',\n  'font-size': '18px',\n  'border-radius': '12px'\n});\n\n// เพิ่ม/ลบ Class\n$('#btn').addClass('active');\n$('#btn').removeClass('active');\n$('#btn').toggleClass('active');\n\n// เช็คว่ามี Class หรือไม่\nif ($('#btn').hasClass('active')) {\n  console.log('Button is active!');\n}",
+      "language": "javascript"
+    },
+    {
+      "id": "events",
+      "title": "Event Handling",
+      "content": "jQuery ให้วิธีจัดการ Events ที่เรียบง่าย รองรับทุก browser อย่างสม่ำเสมอ",
+      "code": "// Click Event\n$('#btn').click(function() {\n  alert('Clicked!');\n});\n\n// Hover Event\n$('#card').hover(\n  function() { $(this).addClass('hovered'); },\n  function() { $(this).removeClass('hovered'); }\n);\n\n// Event Delegation (สำหรับ dynamic elements)\n$(document).on('click', '.dynamic-btn', function() {\n  console.log('Dynamic button clicked!');\n});\n\n// Keyboard Events\n$('#input').keyup(function(e) {\n  if (e.key === 'Enter') {\n    console.log('Enter pressed!');\n  }\n});",
+      "language": "javascript"
+    },
+    {
+      "id": "effects",
+      "title": "Effects & Animations",
+      "content": "jQuery มี built-in effects และ animations ที่ใช้งานง่าย ช่วยทำให้ UI มีชีวิตชีวา",
+      "code": "// Show / Hide\n$('#panel').show(400);\n$('#panel').hide(400);\n$('#panel').toggle(400);\n\n// Fade\n$('#overlay').fadeIn(500);\n$('#overlay').fadeOut(500);\n$('#overlay').fadeTo(500, 0.5);\n\n// Slide\n$('#menu').slideDown(300);\n$('#menu').slideUp(300);\n$('#menu').slideToggle(300);\n\n// Custom Animation\n$('#box').animate({\n  left: '250px',\n  opacity: 0.5,\n  width: '200px'\n}, 800);",
+      "language": "javascript"
+    }
+  ]
+}

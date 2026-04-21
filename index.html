@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="สรุป jQuery & AJAX แบบครบถ้วน พร้อมตัวอย่างโค้ดจริง Live Demo และ Quick Reference Cheatsheet — เรียนรู้ผ่านเว็บที่สร้างด้วย jQuery + AJAX" />
+  <meta name="keywords" content="jQuery, AJAX, JavaScript, Tutorial, สรุป, เรียนรู้, Web Development" />
+  <meta name="author" content="jQuery Summary" />
+  <title>jQuery & AJAX Summary — Interactive Guide</title>
+
+  <!-- Favicon -->
+  <link rel="icon" href="https://jquery.com/favicon.ico" type="image/x-icon" />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ===== Ambient Background ===== -->
+  <div class="ambient-bg">
+    <div class="orb"></div>
+    <div class="orb"></div>
+    <div class="orb"></div>
+  </div>
+
+  <!-- ===== Navbar ===== -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <a href="#" class="logo">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/jquery/jquery-plain.svg" alt="jQuery Logo" class="logo-img" width="32" height="32" />
+        <span>jQuery & AJAX</span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#" class="active" data-tab="jquery-basics">jQuery พื้นฐาน</a></li>
+        <li><a href="#" data-tab="ajax-guide">AJAX Guide</a></li>
+        <li><a href="#" data-tab="practical-examples">ตัวอย่างจริง</a></li>
+        <li><a href="#" data-tab="cheatsheet">Cheatsheet</a></li>
+      </ul>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">☰</button>
+    </div>
+  </nav>
+
+  <!-- ===== Hero Section ===== -->
+  <section class="hero">
+    <div class="hero-badge">
+      <span class="pulse"></span>
+      Powered by jQuery + AJAX
+    </div>
+    <h1>
+      สรุป <span class="gradient-text">jQuery & AJAX</span><br />
+      แบบเข้าใจง่าย
+    </h1>
+    <p class="subtitle">
+      เรียนรู้ jQuery และ AJAX ผ่านเว็บไซต์ที่สร้างขึ้นด้วย jQuery + AJAX จริง ๆ
+      — ทุกอย่างถูกโหลดและแสดงผลด้วยโค้ดที่คุณกำลังเรียนอยู่!
+    </p>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-value" id="stat-sections">—</div>
+        <div class="stat-label">Sections</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value" id="stat-examples">—</div>
+        <div class="stat-label">Examples</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value" id="stat-loaded">0/4</div>
+        <div class="stat-label">AJAX Loaded</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Main Content ===== -->
+  <main class="tab-container">
+
+    <!-- Tab Navigation -->
+    <div class="tab-nav" id="tabNav">
+      <button class="tab-btn active" data-tab="jquery-basics">
+        <span class="tab-icon">⚡</span> jQuery Basics
+      </button>
+      <button class="tab-btn" data-tab="ajax-guide">
+        <span class="tab-icon">🌐</span> AJAX Guide
+      </button>
+      <button class="tab-btn" data-tab="practical-examples">
+        <span class="tab-icon">🚀</span> ตัวอย่างจริง
+      </button>
+      <button class="tab-btn" data-tab="cheatsheet">
+        <span class="tab-icon">📋</span> Cheatsheet
+      </button>
+    </div>
+
+    <!-- Tab Contents (loaded via AJAX) -->
+    <div class="tab-content active" id="jquery-basics">
+      <div class="tab-body">
+        <!-- Content loaded via AJAX -->
+      </div>
+    </div>
+
+    <div class="tab-content" id="ajax-guide">
+      <div class="tab-body">
+        <!-- Content loaded via AJAX -->
+      </div>
+    </div>
+
+    <div class="tab-content" id="practical-examples">
+      <div class="tab-body">
+        <!-- Content loaded via AJAX -->
+      </div>
+    </div>
+
+    <div class="tab-content" id="cheatsheet">
+      <div class="tab-body">
+        <!-- Content loaded via AJAX -->
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ===== AJAX Toast Notification ===== -->
+  <div class="ajax-toast" id="ajax-toast"></div>
+
+  <!-- ===== Back to Top ===== -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
+
+  <!-- ===== Footer ===== -->
+  <footer class="footer">
+    <p>
+      สร้างด้วย
+      <a href="https://jquery.com" target="_blank" rel="noopener">jQuery 3.7.1</a>
+      + AJAX — ข้อมูลทั้งหมดโหลดจาก JSON files ผ่าน AJAX
+    </p>
+  </footer>
+
+  <!-- ===== Scripts ===== -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+    crossorigin="anonymous"></script>
+  <script src="app.js"></script>
+
+</body>
+</html>

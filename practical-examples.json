@@ -1,0 +1,49 @@
+{
+  "title": "Practical Examples",
+  "icon": "🚀",
+  "description": "ตัวอย่างการใช้งานจริง jQuery + AJAX",
+  "sections": [
+    {
+      "id": "form-validation",
+      "title": "Form Validation",
+      "content": "ตรวจสอบข้อมูลในฟอร์มก่อนส่งไปยัง Server ด้วย jQuery",
+      "code": "$('#registerForm').submit(function(e) {\n  e.preventDefault(); // ป้องกัน reload\n  \n  let isValid = true;\n  const email = $('#email').val();\n  const password = $('#password').val();\n\n  // ตรวจสอบ Email\n  if (!email.match(/^[\\w-]+@[\\w-]+\\.[a-z]{2,}$/i)) {\n    $('#emailError').text('รูปแบบ Email ไม่ถูกต้อง');\n    isValid = false;\n  }\n\n  // ตรวจสอบ Password\n  if (password.length < 8) {\n    $('#passError').text('รหัสผ่านต้องมีอย่างน้อย 8 ตัวอักษร');\n    isValid = false;\n  }\n\n  if (isValid) {\n    $.post('/api/register', $(this).serialize())\n     .done(function() { alert('สมัครสำเร็จ!'); });\n  }\n});",
+      "language": "javascript"
+    },
+    {
+      "id": "infinite-scroll",
+      "title": "Infinite Scroll",
+      "content": "โหลดข้อมูลเพิ่มอัตโนมัติเมื่อเลื่อนหน้าจอถึงด้านล่าง",
+      "code": "let page = 1;\nlet loading = false;\n\n$(window).scroll(function() {\n  // ถ้าเลื่อนถึงด้านล่าง\n  if ($(window).scrollTop() + $(window).height() \n      >= $(document).height() - 100) {\n    \n    if (!loading) {\n      loading = true;\n      page++;\n      \n      $('#loader').show();\n      \n      $.getJSON('/api/posts?page=' + page, function(data) {\n        $.each(data.posts, function(i, post) {\n          $('#feed').append(\n            '<article class=\"post\">' +\n            '<h3>' + post.title + '</h3>' +\n            '<p>' + post.excerpt + '</p>' +\n            '</article>'\n          );\n        });\n        loading = false;\n        $('#loader').hide();\n      });\n    }\n  }\n});",
+      "language": "javascript"
+    },
+    {
+      "id": "live-search",
+      "title": "Live Search",
+      "content": "ค้นหาแบบ Real-time ด้วย AJAX — แสดงผลลัพธ์ขณะพิมพ์",
+      "code": "let searchTimer;\n\n$('#searchInput').on('keyup', function() {\n  const query = $(this).val().trim();\n  \n  // ใช้ debounce ป้องกันส่ง request มากเกินไป\n  clearTimeout(searchTimer);\n  \n  if (query.length < 2) {\n    $('#searchResults').empty();\n    return;\n  }\n  \n  searchTimer = setTimeout(function() {\n    $.ajax({\n      url: '/api/search',\n      data: { q: query },\n      beforeSend: function() {\n        $('#searchResults').html(\n          '<div class=\"loading\">กำลังค้นหา...</div>'\n        );\n      },\n      success: function(results) {\n        let html = '';\n        $.each(results, function(i, item) {\n          html += '<div class=\"result-item\">' +\n                  '<strong>' + item.title + '</strong>' +\n                  '<p>' + item.description + '</p>' +\n                  '</div>';\n        });\n        $('#searchResults').html(html || 'ไม่พบผลลัพธ์');\n      }\n    });\n  }, 300); // รอ 300ms หลังหยุดพิมพ์\n});",
+      "language": "javascript"
+    },
+    {
+      "id": "crud-operations",
+      "title": "CRUD Operations",
+      "content": "ตัวอย่าง Create, Read, Update, Delete ผ่าน AJAX แบบครบวงจร",
+      "code": "const API = '/api/tasks';\n\n// CREATE — สร้าง Task ใหม่\nfunction createTask(title) {\n  return $.post(API, { title: title, done: false });\n}\n\n// READ — อ่าน Tasks ทั้งหมด\nfunction getTasks() {\n  return $.getJSON(API);\n}\n\n// UPDATE — อัปเดต Task\nfunction updateTask(id, data) {\n  return $.ajax({\n    url: API + '/' + id,\n    type: 'PUT',\n    data: JSON.stringify(data),\n    contentType: 'application/json'\n  });\n}\n\n// DELETE — ลบ Task\nfunction deleteTask(id) {\n  return $.ajax({\n    url: API + '/' + id,\n    type: 'DELETE'\n  });\n}\n\n// ใช้งาน\ncreateTask('เรียน jQuery')\n  .done(() => getTasks())\n  .done(tasks => console.log(tasks));",
+      "language": "javascript"
+    },
+    {
+      "id": "file-upload",
+      "title": "File Upload with Progress",
+      "content": "อัปโหลดไฟล์พร้อมแสดง progress bar ด้วย AJAX",
+      "code": "$('#uploadForm').submit(function(e) {\n  e.preventDefault();\n  \n  const formData = new FormData(this);\n  \n  $.ajax({\n    url: '/api/upload',\n    type: 'POST',\n    data: formData,\n    processData: false,  // ห้าม jQuery แปลง data\n    contentType: false,  // ให้ browser ตั้ง content-type\n    xhr: function() {\n      const xhr = new XMLHttpRequest();\n      \n      // ติดตาม Upload Progress\n      xhr.upload.addEventListener('progress', function(e) {\n        if (e.lengthComputable) {\n          const percent = (e.loaded / e.total) * 100;\n          $('#progressBar')\n            .css('width', percent + '%')\n            .text(Math.round(percent) + '%');\n        }\n      });\n      \n      return xhr;\n    },\n    success: function(response) {\n      $('#status').html('✅ อัปโหลดสำเร็จ!');\n    }\n  });\n});",
+      "language": "javascript"
+    },
+    {
+      "id": "chaining",
+      "title": "Method Chaining",
+      "content": "jQuery รองรับ Method Chaining — เรียกหลาย methods ต่อกันในบรรทัดเดียว ทำให้โค้ดกระชับ",
+      "code": "// Method Chaining — เรียกต่อกันได้เลย!\n$('#myBox')\n  .css('background', 'linear-gradient(135deg, #6c5ce7, #a29bfe)')\n  .addClass('shadow-lg')\n  .fadeIn(500)\n  .animate({ marginTop: '20px' }, 300)\n  .text('Hello jQuery!')\n  .click(function() {\n    $(this).toggleClass('active');\n  });\n\n// รวม AJAX + DOM manipulation\n$.getJSON('data/users.json')\n  .done(function(users) {\n    $('#userCount').text(users.length);\n    $.each(users, function(i, user) {\n      $('<div>')\n        .addClass('user-card')\n        .html('<h4>' + user.name + '</h4>')\n        .appendTo('#userList')\n        .hide()\n        .fadeIn(300 * i); // stagger effect\n    });\n  });",
+      "language": "javascript"
+    }
+  ]
+}

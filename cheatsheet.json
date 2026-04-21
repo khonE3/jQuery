@@ -1,0 +1,82 @@
+{
+  "title": "Quick Reference",
+  "icon": "📋",
+  "description": "สรุปรวม Methods ที่ใช้บ่อย",
+  "categories": [
+    {
+      "name": "Selectors",
+      "color": "#6c5ce7",
+      "items": [
+        { "method": "$(\"#id\")", "desc": "เลือกด้วย ID" },
+        { "method": "$(\".class\")", "desc": "เลือกด้วย Class" },
+        { "method": "$(\"element\")", "desc": "เลือกด้วย Tag" },
+        { "method": "$(\"parent > child\")", "desc": "เลือก child ตรง" },
+        { "method": "$(\":first-child\")", "desc": "เลือกตัวแรก" },
+        { "method": "$(\":nth-child(n)\")", "desc": "เลือกตัวที่ n" }
+      ]
+    },
+    {
+      "name": "DOM",
+      "color": "#00b894",
+      "items": [
+        { "method": ".html()", "desc": "อ่าน/เขียน HTML" },
+        { "method": ".text()", "desc": "อ่าน/เขียน Text" },
+        { "method": ".val()", "desc": "อ่าน/เขียนค่า input" },
+        { "method": ".attr()", "desc": "อ่าน/เขียน attribute" },
+        { "method": ".append()", "desc": "เพิ่มใน element ท้าย" },
+        { "method": ".prepend()", "desc": "เพิ่มใน element ต้น" },
+        { "method": ".remove()", "desc": "ลบ element" },
+        { "method": ".clone()", "desc": "คัดลอก element" }
+      ]
+    },
+    {
+      "name": "CSS",
+      "color": "#e17055",
+      "items": [
+        { "method": ".css()", "desc": "อ่าน/เขียน style" },
+        { "method": ".addClass()", "desc": "เพิ่ม class" },
+        { "method": ".removeClass()", "desc": "ลบ class" },
+        { "method": ".toggleClass()", "desc": "สลับ class" },
+        { "method": ".hasClass()", "desc": "เช็ค class" },
+        { "method": ".width() / .height()", "desc": "อ่าน/เขียนขนาด" }
+      ]
+    },
+    {
+      "name": "Events",
+      "color": "#0984e3",
+      "items": [
+        { "method": ".click()", "desc": "Click event" },
+        { "method": ".on()", "desc": "ผูก event ใดก็ได้" },
+        { "method": ".off()", "desc": "ลบ event" },
+        { "method": ".hover()", "desc": "Mouse enter/leave" },
+        { "method": ".keyup()", "desc": "Keyboard event" },
+        { "method": ".submit()", "desc": "Form submit" },
+        { "method": ".trigger()", "desc": "เรียก event เอง" }
+      ]
+    },
+    {
+      "name": "Effects",
+      "color": "#fdcb6e",
+      "items": [
+        { "method": ".show() / .hide()", "desc": "แสดง/ซ่อน" },
+        { "method": ".fadeIn() / .fadeOut()", "desc": "จาง/ปรากฏ" },
+        { "method": ".slideUp() / .slideDown()", "desc": "เลื่อน" },
+        { "method": ".animate()", "desc": "Custom animation" },
+        { "method": ".delay()", "desc": "หน่วงเวลา" },
+        { "method": ".stop()", "desc": "หยุด animation" }
+      ]
+    },
+    {
+      "name": "AJAX",
+      "color": "#e84393",
+      "items": [
+        { "method": "$.ajax()", "desc": "AJAX request เต็ม" },
+        { "method": "$.get()", "desc": "GET แบบสั้น" },
+        { "method": "$.post()", "desc": "POST แบบสั้น" },
+        { "method": "$.getJSON()", "desc": "GET JSON" },
+        { "method": ".load()", "desc": "โหลด HTML" },
+        { "method": "$.ajaxSetup()", "desc": "ตั้งค่า default" }
+      ]
+    }
+  ]
+}
